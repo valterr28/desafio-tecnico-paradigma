@@ -8,6 +8,8 @@ namespace Tarefa2
     /// </summary>
     class Program
     {
+        private const int SeparadorLargura = 60;
+
         static void Main(string[] args)
         {
             Console.WriteLine("=== Desafio Técnico - Tarefa 2: Construção de Árvore Binária ===\n");
@@ -18,13 +20,13 @@ namespace Tarefa2
             int[] array1 = { 3, 2, 1, 6, 0, 5 };
             ProcessarCenario("Cenário 1", array1, builder);
 
-            Console.WriteLine("\n" + new string('-', 60) + "\n");
+            Console.WriteLine("\n" + new string('-', SeparadorLargura) + "\n");
 
             // Cenário 2: [7, 5, 13, 9, 1, 6, 4]
             int[] array2 = { 7, 5, 13, 9, 1, 6, 4 };
             ProcessarCenario("Cenário 2", array2, builder);
 
-            Console.WriteLine("\n" + new string('-', 60) + "\n");
+            Console.WriteLine("\n" + new string('-', SeparadorLargura) + "\n");
             Console.WriteLine("Agora você pode testar com seus próprios arrays!\n");
 
             // Loop para permitir que o usuário teste arrays customizados
@@ -76,27 +78,15 @@ namespace Tarefa2
             Console.WriteLine($"{nomeCenario}:");
             Console.WriteLine($"Array de entrada: [{string.Join(", ", array)}]");
 
-            // Encontra o índice do maior valor (raiz)
-            int indiceRaiz = Array.IndexOf(array, array.Max());
-            int valorRaiz = array[indiceRaiz];
-
-            // Calcula os galhos da esquerda e direita
-            int[] galhosEsquerda = array.Take(indiceRaiz).ToArray();
-            int[] galhosDireita = array.Skip(indiceRaiz + 1).ToArray();
-
-            // Ordena em ordem decrescente para exibição
-            Array.Sort(galhosEsquerda);
-            Array.Reverse(galhosEsquerda);
-
-            Array.Sort(galhosDireita);
-            Array.Reverse(galhosDireita);
-
             // Constrói a árvore
             Knot? raiz = builder.ConstruirArvore(array);
 
             if (raiz != null)
             {
                 Console.WriteLine($"Raiz: {raiz.Valor}");
+
+                // Obtém os valores dos galhos diretamente da árvore construída
+                var (galhosEsquerda, galhosDireita) = builder.ObterValoresDosGalhos(raiz);
 
                 if (galhosEsquerda.Length > 0)
                 {

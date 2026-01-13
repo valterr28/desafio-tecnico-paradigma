@@ -13,13 +13,53 @@ namespace Tarefa2
     public class ArvoreBuilder
     {
         /// <summary>
+        /// Ordena um array em ordem decrescente (modifica o array original)
+        /// </summary>
+        private static void OrdenarDecrescente(int[] array)
+        {
+            if (array == null || array.Length <= 1)
+            {
+                return;
+            }
+
+            Array.Sort(array, (a, b) => b.CompareTo(a));
+        }
+        /// <summary>
+        /// Valida se o array é válido para construção da árvore
+        /// </summary>
+        private static bool EhArrayValido(int[]? array)
+        {
+            return array != null && array.Length > 0;
+        }
+
+        /// <summary>
+        /// Encontra o índice do maior valor no array em uma única passada
+        /// </summary>
+        private static int EncontrarIndiceMaximo(int[] array)
+        {
+            int indiceMaximo = 0;
+            int valorMaximo = array[0];
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] > valorMaximo)
+                {
+                    valorMaximo = array[i];
+                    indiceMaximo = i;
+                }
+            }
+
+            return indiceMaximo;
+        }
+
+        /// <summary>
         /// Constrói uma árvore binária a partir de um array de inteiros
         /// </summary>
         /// <param name="array">Array de inteiros sem duplicidade</param>
         /// <returns>Raiz da árvore construída, ou null se o array estiver vazio</returns>
         public Knot? ConstruirArvore(int[] array)
         {
-            if (array == null || array.Length == 0)
+            if (!EhArrayValido(array))
             {
                 return null;
             }
@@ -29,8 +69,8 @@ namespace Tarefa2
                 return new Knot(array[0]);
             }
 
-            // Encontra o índice do maior valor (raiz)
-            int indiceRaiz = Array.IndexOf(array, array.Max());
+            // Encontra o índice do maior valor (raiz) em uma única passada
+            int indiceRaiz = EncontrarIndiceMaximo(array);
 
             // Cria o nó raiz
             Knot raiz = new Knot(array[indiceRaiz]);
@@ -40,11 +80,8 @@ namespace Tarefa2
             int[] arrayDireita = array.Skip(indiceRaiz + 1).ToArray();
 
             // Ordena os arrays em ordem decrescente
-            Array.Sort(arrayEsquerda);
-            Array.Reverse(arrayEsquerda);
-
-            Array.Sort(arrayDireita);
-            Array.Reverse(arrayDireita);
+            OrdenarDecrescente(arrayEsquerda);
+            OrdenarDecrescente(arrayDireita);
 
             // Constrói recursivamente os galhos
             raiz.Esquerda = ConstruirGalho(arrayEsquerda);
@@ -60,7 +97,7 @@ namespace Tarefa2
         /// <returns>Raiz do galho construído, ou null se o array estiver vazio</returns>
         private Knot? ConstruirGalho(int[] array)
         {
-            if (array == null || array.Length == 0)
+            if (!EhArrayValido(array))
             {
                 return null;
             }
@@ -80,6 +117,48 @@ namespace Tarefa2
             no.Direita = ConstruirGalho(resto);
 
             return no;
+        }
+
+        /// <summary>
+        /// Extrai os valores dos galhos da esquerda e direita da árvore em ordem decrescente
+        /// </summary>
+        /// <param name="raiz">Raiz da árvore</param>
+        /// <returns>Tupla contendo os valores dos galhos da esquerda e direita (em ordem decrescente)</returns>
+        public (int[] galhosEsquerda, int[] galhosDireita) ObterValoresDosGalhos(Knot? raiz)
+        {
+            if (raiz == null)
+            {
+                return (Array.Empty<int>(), Array.Empty<int>());
+            }
+
+            int[] galhosEsquerda = ExtrairValores(raiz.Esquerda);
+            int[] galhosDireita = ExtrairValores(raiz.Direita);
+
+            return (galhosEsquerda, galhosDireita);
+        }
+
+        /// <summary>
+        /// Extrai os valores de um galho percorrendo-o da raiz para a direita (ordem decrescente)
+        /// A estrutura do galho é linear (só tem filhos à direita), então percorremos da raiz até o fim
+        /// </summary>
+        private int[] ExtrairValores(Knot? no)
+        {
+            if (no == null)
+            {
+                return Array.Empty<int>();
+            }
+
+            var valores = new System.Collections.Generic.List<int>();
+            Knot? atual = no;
+            
+            // Percorre a cadeia linear da direita coletando valores (já está em ordem decrescente)
+            while (atual != null)
+            {
+                valores.Add(atual.Valor);
+                atual = atual.Direita;
+            }
+
+            return valores.ToArray();
         }
 
         /// <summary>
@@ -136,20 +215,5 @@ namespace Tarefa2
             }
         }
 
-        /// <summary>
-        /// Imprime a árvore em ordem (percurso in-order)
-        /// </summary>
-        /// <param name="raiz">Raiz da árvore</param>
-        public void ImprimirEmOrdem(Knot? raiz)
-        {
-            if (raiz == null)
-            {
-                return;
-            }
-
-            ImprimirEmOrdem(raiz.Esquerda);
-            Console.Write(raiz.Valor + " ");
-            ImprimirEmOrdem(raiz.Direita);
-        }
     }
 }
