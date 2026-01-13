@@ -5,7 +5,7 @@ Este repositório contém as soluções para o desafio técnico da Paradigma, im
 1. **Tarefa 1**: Consulta SQL para encontrar colaboradores com maior salário por departamento
 2. **Tarefa 2**: Algoritmo em C# para construção de árvore binária a partir de um array
 
-## 📋 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 desafio/
@@ -21,7 +21,7 @@ desafio/
 └── .gitignore                     # Arquivos ignorados pelo Git
 ```
 
-## 🔍 Tarefa 1: Consulta SQL
+## Tarefa 1: Consulta SQL
 
 ### Descrição
 Escrever uma consulta SQL para encontrar os colaboradores que têm o salário mais alto em cada departamento.
@@ -60,7 +60,7 @@ Ou rode o script criador de tabelas e após isso use o script de consultar os sa
 
 **Nota**: Em caso de empate de salários no mesmo departamento, todos os colaboradores com o salário máximo serão retornados na consulta.
 
-## 🌳 Tarefa 2: Algoritmo de Árvore Binária
+## Tarefa 2: Algoritmo de Árvore Binária
 
 ### Descrição
 Construir um algoritmo que cria uma árvore binária a partir de um array de inteiros sem duplicidade, seguindo as regras:
@@ -155,20 +155,20 @@ Classe principal que contém:
 - **Tempo**: O(n log n) devido à ordenação dos subarrays
 - **Espaço**: O(n) para armazenar a árvore
 
-## 🧪 Testes
+## Testes
 
 O programa inclui testes para:
 - ✅ Cenário 1: `[3, 2, 1, 6, 0, 5]`
 - ✅ Cenário 2: `[7, 5, 13, 9, 1, 6, 4]`
 - ✅ Casos especiais: array com um elemento, arrays ordenados, raiz no início/fim
 
-## 📝 Observações
+## Observações
 
 - O algoritmo assume que o array não contém valores duplicados
 - Arrays vazios retornam `null`
 - A árvore é construída de forma recursiva
 - A visualização da árvore usa caracteres Unicode para melhor apresentação
 
-## 📄 Licença
+## Licença
 
 Este projeto foi desenvolvido exclusivamente para fins de avaliação técnica.
