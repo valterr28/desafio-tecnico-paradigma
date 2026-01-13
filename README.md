@@ -39,17 +39,12 @@ Escrever uma consulta SQL para encontrar os colaboradores que têm o salário ma
 
 ### Solução
 
-O arquivo `Tarefa1/consulta_salarios.sql` contém três abordagens diferentes:
+O arquivo `Tarefa1/consulta_salarios.sql` contém uma consulta usando `MAX()` com subconsulta:
 
-1. **Solução 1 (Recomendada)**: Usando `ROW_NUMBER()` com `PARTITION BY`
-   - Mais eficiente e clara
-   - Garante um único resultado por departamento, mesmo em caso de empate
-
-2. **Solução 2**: Usando `MAX()` com subconsulta
-   - Alternativa clássica usando agregação
-
-3. **Solução 3**: Usando `RANK()`
-   - Retorna todos os colaboradores em caso de empate de salários
+- **Abordagem**: Usando `MAX()` com subconsulta
+  - Eficiente e clara
+  - Retorna todos os colaboradores com o maior salário por departamento
+  - Em caso de empate de salários, todos os colaboradores empatados serão retornados
 
 ### Como Executar
 
@@ -61,6 +56,8 @@ Execute o script SQL em um banco de dados SQL Server que contenha as tabelas `Pe
 |--------------|--------|---------|
 | TI           | Max    | 90000   |
 | Vendas       | Henry  | 80000   |
+
+**Nota**: Em caso de empate de salários no mesmo departamento, todos os colaboradores com o salário máximo serão retornados na consulta.
 
 ## 🌳 Tarefa 2: Algoritmo de Árvore Binária
 
