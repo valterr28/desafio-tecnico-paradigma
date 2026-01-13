@@ -1,0 +1,35 @@
+## Arquivos de build do Visual Studio
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+
+## Arquivos de configuração do Visual Studio
+.vs/
+.vscode/
+*.sln.docstates
+
+## Arquivos temporários
+*.tmp
+*.temp
+*~
+
+## Arquivos de log
+*.log
+
+## Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+## Arquivos de banco de dados
+*.mdf
+*.ldf
+*.ndf
+
+## Arquivos de backup
+*.bak
+*.backup
