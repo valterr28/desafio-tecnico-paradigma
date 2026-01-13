@@ -54,7 +54,7 @@ namespace Tarefa2
                         continue;
                     }
 
-                    // Verifica duplicidades
+                    // Verifica duplicidades, mesmo que desafio diga que não terá, melhor explicitar
                     if (arrayCustom.Length != arrayCustom.Distinct().Count())
                     {
                         Console.WriteLine("Erro: O array não pode conter valores duplicados!\n");
@@ -85,7 +85,6 @@ namespace Tarefa2
             {
                 Console.WriteLine($"Raiz: {raiz.Valor}");
 
-                // Obtém os valores dos galhos diretamente da árvore construída
                 var (galhosEsquerda, galhosDireita) = builder.ObterValoresDosGalhos(raiz);
 
                 if (galhosEsquerda.Length > 0)

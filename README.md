@@ -11,6 +11,7 @@ Este repositório contém as soluções para o desafio técnico da Paradigma, im
 desafio/
 ├── Tarefa1/
 │   └── consulta_salarios.sql    # Solução SQL
+│   └── criar_tabelas.sql        # Cria as tabelas e preenche com valores (pra teste facilitado)
 ├── Tarefa2/
 │   ├── No.cs                     # Classe do nó da árvore
 │   ├── ArvoreBuilder.cs          # Classe principal do algoritmo
@@ -42,13 +43,13 @@ Escrever uma consulta SQL para encontrar os colaboradores que têm o salário ma
 O arquivo `Tarefa1/consulta_salarios.sql` contém uma consulta usando `MAX()` com subconsulta:
 
 - **Abordagem**: Usando `MAX()` com subconsulta
-  - Eficiente e clara
   - Retorna todos os colaboradores com o maior salário por departamento
   - Em caso de empate de salários, todos os colaboradores empatados serão retornados
 
 ### Como Executar
 
 Execute o script SQL em um banco de dados SQL Server que contenha as tabelas `Pessoa` e `Departamento` populadas com os dados de exemplo.
+Ou rode o script criador de tabelas e após isso use o script de consultar os salários.
 
 ### Resultado Esperado
 
@@ -91,12 +92,7 @@ O algoritmo implementado em C# segue os seguintes passos:
 cd Tarefa2
 ```
 
-2. Restaure as dependências (se necessário):
-```bash
-dotnet restore
-```
-
-3. Execute o programa:
+2. Execute o programa:
 ```bash
 dotnet run
 ```
@@ -172,10 +168,6 @@ O programa inclui testes para:
 - Arrays vazios retornam `null`
 - A árvore é construída de forma recursiva
 - A visualização da árvore usa caracteres Unicode para melhor apresentação
-
-## 👨‍💻 Autor
-
-Desenvolvido como parte do processo seletivo para desenvolvedor na Paradigma.
 
 ## 📄 Licença
 

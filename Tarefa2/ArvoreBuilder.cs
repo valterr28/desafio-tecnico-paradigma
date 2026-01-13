@@ -5,7 +5,7 @@ namespace Tarefa2
 {
     /// <summary>
     /// Classe responsável por construir uma árvore binária a partir de um array
-    /// seguindo as regras especificadas:
+    /// seguindo as regras do desafio:
     /// - Raiz: maior valor do array
     /// - Galhos da esquerda: números à esquerda do valor raiz, em ordem decrescente
     /// - Galhos da direita: números à direita do valor raiz, em ordem decrescente
@@ -69,21 +69,17 @@ namespace Tarefa2
                 return new Knot(array[0]);
             }
 
-            // Encontra o índice do maior valor (raiz) em uma única passada
             int indiceRaiz = EncontrarIndiceMaximo(array);
 
-            // Cria o nó raiz
             Knot raiz = new Knot(array[indiceRaiz]);
 
             // Divide o array em partes esquerda e direita
             int[] arrayEsquerda = array.Take(indiceRaiz).ToArray();
             int[] arrayDireita = array.Skip(indiceRaiz + 1).ToArray();
 
-            // Ordena os arrays em ordem decrescente
             OrdenarDecrescente(arrayEsquerda);
             OrdenarDecrescente(arrayDireita);
 
-            // Constrói recursivamente os galhos
             raiz.Esquerda = ConstruirGalho(arrayEsquerda);
             raiz.Direita = ConstruirGalho(arrayDireita);
 
@@ -151,7 +147,6 @@ namespace Tarefa2
             var valores = new System.Collections.Generic.List<int>();
             Knot? atual = no;
             
-            // Percorre a cadeia linear da direita coletando valores (já está em ordem decrescente)
             while (atual != null)
             {
                 valores.Add(atual.Valor);
